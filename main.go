@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/RyaWcksn/go-api/candidate"
 	"github.com/RyaWcksn/go-api/config"
 	"github.com/gin-gonic/gin"
 )
@@ -11,6 +12,7 @@ func main() {
 	//Initialize Database
 	db := config.Connection()
 	fmt.Println(db)
+	didatesRepo := candidate.NewCandidateRepository(db)
 
 	// Initialize Gin Gonic
 	route := gin.Default()
