@@ -16,4 +16,12 @@ func NewCandidateRepository(db *gorm.DB) *repository {
     return &repository{db}
 }
 
+func (r *repository) GetAll() ([]Candidate, error) {
+    var candidates []Candidate
+    err := r.db.Find(&candidates).Error
+    return candidates, err
+}
 
+func (r *repository) Create(candidate Candidate) error {
+    return r.db.Create(&candidate).Error
+}
