@@ -43,7 +43,7 @@ func (h candidateHandler) CandidateGetAllHandler(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"data":  nil,
-			"error": err,
+			"error": err.Error(),
 		})
         return
 	}
