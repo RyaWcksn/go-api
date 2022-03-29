@@ -1,25 +1,29 @@
 package main
 
 import (
-	"github.com/RyaWcksn/go-api/candidate"
 	"github.com/RyaWcksn/go-api/config"
-	"github.com/RyaWcksn/go-api/handler"
+	"github.com/RyaWcksn/go-api/routes"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	//Initialize Database
-	db := config.Connection()
-	candidatesRepository := candidate.NewCandidateRepository(db)
-	candidateService := candidate.NewCandidateService(candidatesRepository)
-	candidateHandler := handler.NewCandidateHandler(candidateService)
+	// Initialize Routing
+	router := SetupRouter()
 
-	route := gin.Default()
-	route.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	route.POST("/candidates", candidateHandler.CandidatePostHandler)
-	route.Run(":6969")
+	router.Run(":6969")
+}
+
+func SetupRouter() *gin.Engine {
+	router := gin.Default()
+	db := config.Connection()
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:  []string{"*"},
+		AllowMethods:  []string{"*"},
+		AllowHeaders:  []string{"*"},
+		AllowWildcard: true,
+	}))
+	routes.InitCandidateRoute(db, router)
+
+	return router
 }

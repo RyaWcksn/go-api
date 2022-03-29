@@ -8,7 +8,5 @@ type Candidate struct {
 	Email       string
 	Phone       string
 	CV          string
-	CoverLetter string
-	JobID       uint
 	Details     string
 }

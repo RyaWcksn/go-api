@@ -30,3 +30,13 @@ func (h candidateHandler) CandidatePostHandler(c *gin.Context) {
         "data": candidate,
     })
 }
+
+func (h candidateHandler) CandidateGetAllHandler(c *gin.Context) {
+    candidates, err := h.candidateService.GetAll()
+    if err != nil {
+        panic(err)
+    }
+    c.JSON(http.StatusOK, gin.H{
+        "data": candidates,
+    })
+}
