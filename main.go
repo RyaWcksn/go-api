@@ -1,25 +1,25 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/RyaWcksn/go-api/candidate"
 	"github.com/RyaWcksn/go-api/config"
+	"github.com/RyaWcksn/go-api/handler"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	//Initialize Database
 	db := config.Connection()
-	fmt.Println(db)
-	didatesRepo := candidate.NewCandidateRepository(db)
+	candidatesRepository := candidate.NewCandidateRepository(db)
+	candidateService := candidate.NewCandidateService(candidatesRepository)
+	candidateHandler := handler.NewCandidateHandler(candidateService)
 
-	// Initialize Gin Gonic
 	route := gin.Default()
 	route.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
 	})
+	route.POST("/candidates", candidateHandler.CandidatePostHandler)
 	route.Run(":6969")
 }

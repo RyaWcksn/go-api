@@ -5,7 +5,7 @@ import "gorm.io/gorm"
 
 type CandidateRepository interface {
    GetAll() ([]Candidate, error) 
-   Create(candidate Candidate) error
+   Create(candidate Candidate) (Candidate, error)
 }
 
 type repository struct {
@@ -22,6 +22,7 @@ func (r *repository) GetAll() ([]Candidate, error) {
     return candidates, err
 }
 
-func (r *repository) Create(candidate Candidate) error {
-    return r.db.Create(&candidate).Error
+func (r *repository) Create(candidate Candidate) (Candidate, error) {
+    err := r.db.Create(&candidate).Error
+    return candidate, err
 }
