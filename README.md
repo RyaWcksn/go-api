@@ -44,6 +44,6 @@ For the File structure, can use template as declared below
 For the flow of how the API structure works, down below is the graphic for the flow  
 
 ```mermaid
-flowchart LR;
-A[Http Req] -->|Send body json, the payload is from entity.go or can be custom| --> B[Routes] -->|Process the JSON to handler| --> C[Handler] --> |Send bind json to Service layer| D[Service] --> |From service layer, sent to repository to store the data to DB| --> E[Repository]
+flowchart TD;
+A[Http Req] -->|Send body json, the payload is from entity.go or can be custom| B[Routes] -->|Process the JSON to handler| C[Handler] --> |Send bind json to Service layer| D[Service] --> |From service layer, sent to repository to store the data to DB| E[Repository]
 ```
