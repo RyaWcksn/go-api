@@ -45,6 +45,5 @@ For the flow of how the API structure works, down below is the graphic for the f
 
 ```mermaid
 flowchart LR;
-A[Http Req] --> B|Send body json, the payload is from entity.go or can be custom| --> C[Routes] --> D|Process the JSON to handler| --> E[Handler] --> F|Send bind json to Service layer|
-F --> G[Service] --> H|From service layer, sent to repository to store the data to DB| --> I[Repository]
+A[Http Req] -->|Send body json, the payload is from entity.go or can be custom| --> B[Routes] -->|Process the JSON to handler| --> C[Handler] --> |Send bind json to Service layer| D[Service] --> |From service layer, sent to repository to store the data to DB| --> E[Repository]
 ```
