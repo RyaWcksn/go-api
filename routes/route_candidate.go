@@ -1,14 +1,12 @@
 package routes
 
 import (
-	"github.com/RyaWcksn/go-api/candidate"
-	"github.com/RyaWcksn/go-api/handler"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
 func InitCandidateRoute(db *gorm.DB, route *gin.Engine) {
-    candidateRepo := candidate.NewCandidateRepository(db)
+    /* candidateRepo := candidate.NewCandidateRepository(db)
     candidateService := candidate.NewCandidateService(candidateRepo)
     candidateHandler := handler.NewCandidateHandler(candidateService)
 
@@ -16,5 +14,5 @@ func InitCandidateRoute(db *gorm.DB, route *gin.Engine) {
     {
         candidateRoute.GET("", candidateHandler.CandidateGetAllHandler)
         candidateRoute.POST("", candidateHandler.CandidatePostHandler)
-    }
+    } */
 }

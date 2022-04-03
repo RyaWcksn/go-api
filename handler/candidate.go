@@ -1,14 +1,6 @@
 package handler
 
-import (
-	"fmt"
-	"net/http"
-
-	"github.com/RyaWcksn/go-api/candidate"
-	"github.com/gin-gonic/gin"
-)
-
-type candidateHandler struct {
+/* type candidateHandler struct {
 	candidateService candidate.ServiceCandidate
 }
 
@@ -51,4 +43,4 @@ func (h candidateHandler) CandidateGetAllHandler(c *gin.Context) {
 		"data":  candidates,
 		"error": nil,
 	})
-}
+} */
